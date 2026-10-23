@@ -5,7 +5,7 @@
 跟同學比比看，誰才是採礦大師！
 
 等級 (Tier),圖示,礦石種類,礦石 ID,單個礦石積分,難度/稀有度說明
-Tier 1,<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/d3865f49-04ef-4194-a7cf-f9685f77b276"/>
+Tier 1,<img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/d3865f49-04ef-4194-a7cf-f9685f77b276"/>
 " width="32">,煤礦,coal_ore,1 分,最容易取得的基礎礦石，可以製作火把跟打火石。
 ,,銅礦,copper_ore,1 分,常見的基礎礦石，可用於製作望遠鏡、避雷針和銅塊建築。
 ,,地獄石英礦,nether_quartz_ore,1 分,位於地獄的常見礦石，用於製作石英方塊和紅石比較器。
