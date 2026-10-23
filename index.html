@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麥塊伺服器學習基地</title>
+  <style>
+    body {
+      font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: #f0f7ff;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 30px;
+      box-sizing: border-box;
+    }
+    h1 { color: #2b6cb0; text-align: center; }
+    .card {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .btn {
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn:hover { background-color: #2b6cb0; }
+    .btn-green { background-color: #38a169; }
+    .btn-green:hover { background-color: #2f855a; }
+    .score-display {
+      font-size: 28px;
+      font-weight: bold;
+      color: #d69e2e;
+      margin: 15px 0;
+    }
+    pre {
+      background: #2d3748;
+      color: #edf2f7;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎮 麥塊小工程師學習基地</h1>
+    <p style="text-align:center; color:#718096;">點擊下方按鈕進行互動，體驗伺服器背後的程式邏輯！</p>
+
+    <!-- 互動一：挖礦積分模擬器 -->
+    <div class="card">
+      <h2>⛏️ 挖礦積分模擬器</h2>
+      <p>模擬你在遊戲中挖到礦石時的加分效果：</p>
+      <button class="btn" onclick="addPoints(1)">挖到煤礦 (+1 分)</button>
+      <button class="btn" onclick="addPoints(5)">挖到金礦 (+5 分)</button>
+      <button class="btn btn-green" onclick="addPoints(10)">挖到鑽石 (+10 分)</button>
+
+      <div class="score-display">目前總分：<span id="current-score">0</span> 分</div>
+      <div id="reward-status" style="font-weight:bold; color:#e53e3e;"></div>
+    </div>
+
+    <!-- 互動二：一鍵複製 Python 代碼 -->
+    <div class="card">
+      <h2>📜 Code Builder 程式碼封包</h2>
+      <p>點擊按鈕一鍵複製完整程式碼，再貼進遊戲內的程式碼建立器中：</p>
+      <button class="btn btn-green" onclick="copyCode()">📋 點我一鍵複製全部程式碼</button>
+      <pre><code id="code-block"># 麥塊伺服器初始化程式碼
+def on_chat_setup():
+    player.execute('scoreboard objectives add mine_score dummy "挖礦總積分"')
+    player.execute('scoreboard objectives setdisplay sidebar mine_score')
+    player.say("記分板已啟動！")
+
+player.on_chat("setup", on_chat_setup)</code></pre>
+    </div>
+  </div>
+
+  <script>
+    let score = 0;
+    function addPoints(pts) {
+      score += pts;
+      document.getElementById('current-score').innerText = score;
+      
+      const status = document.getElementById('reward-status');
+      if (score >= 50 && score < 100) {
+        status.innerText = "🎉 太棒了！已達成 50 分，獲得鐵鎬一把！";
+      } else if (score >= 100) {
+        status.innerText = "🏆 恭喜！已達成 100 分，解鎖高級獎勵！";
+      }
+    }
+
+    function copyCode() {
+      const code = document.getElementById('code-block').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("程式碼已成功複製！請切換到麥塊 Code Builder 直接貼上。");
+      });
+    }
+  </script>
+</body>
+</html>
